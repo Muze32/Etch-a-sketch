@@ -1,19 +1,17 @@
 .container div {
     border: 1px solid #000;
-    width: 48px; /* Puedes ajustar el tamaño según tus necesidades */
-    height: 48px; /* Puedes ajustar el tamaño según tus necesidades */
-    
 }
 
 .full_grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 800px; /* Puedes ajustar el tamaño según tus necesidades */
-    height: 800px; /* Puedes ajustar el tamaño según tus necesidades */
-    overflow: hidden; /* Para asegurar que los elementos no se desborden */
+    width: 900px;
+    height: 900px; 
+    overflow: hidden; 
+    margin: auto;
 }
 
-.full_grid div {
-    flex-shrink: 1;
+.grid.hovered {
+    background-color: black;
 }

@@ -10,23 +10,36 @@ input_button.addEventListener("click", () =>
     {
         full_grid.removeChild(full_grid.firstChild);
     }
-
-    for(let i = 0; i < input; i++) 
+    
+    if (input >= 0 && input <= 100) 
     {
-        const container = document.createElement("div");
-        container.classList.add("container");
-        for (let j = 0; j < input; j++) 
-        {
-            const grid = document.createElement("div");
-            grid.setAttribute("class", "grid");
-            container.appendChild(grid);
-        }
-        full_grid.appendChild(container);
+        input_button.textContent = `Change size (${input} x ${input})`;
+        for(let i = 0; i < input; i++) 
+            {
+                const container = document.createElement("div");
+                container.classList.add("container");
+                for (let j = 0; j < input; j++) 
+                {
+                    const grid = document.createElement("div");
+                    grid.setAttribute("class", "grid");
+                    grid.style.height = "50px";
+                    grid.style.height = ((full_grid.offsetHeight / input) - 2).toString() + "px";
+                    grid.style.width = ((full_grid.offsetWidth / input) - 2).toString() + "px";
+                    container.appendChild(grid);
+                }
+                full_grid.appendChild(container);
+            }
+        
+    }
+    else {
+        prompt("Please enter an valid number!");
     }
 })
-console.log(full_grid.offsetWidth)
 
 full_grid.addEventListener("mouseover", (event) => 
 {
-    event.target.setAttribute("style", "background-color: black");
+    if (event.target.className == "grid") 
+    {
+        event.target.setAttribute("class", "grid hovered");
+    }
 })
