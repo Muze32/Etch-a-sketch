@@ -13,3 +13,7 @@ for(let i = 0; i < 16; i++) {
     full_grid.appendChild(container);
 }
 
+
+full_grid.addEventListener("mouseover", (event) => {
+    event.target.setAttribute("style", "background-color: black");
+})
