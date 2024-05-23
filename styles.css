@@ -1,0 +1,8 @@
+.container div {
+    border: 1px solid #000;
+}
+
+.full_grid {
+    display: flex;
+    width: fit-content; /* O ajusta a un ancho específico si es necesario */
+}
