@@ -4,6 +4,34 @@ const input_button = document.querySelector(".input");
 const rainbow = document.querySelector(".rainbow");
 const mono = document.querySelector(".mono");
 let random_color = false;
+create_grid(5);
+
+input_button.addEventListener("click", () => 
+{
+    let input =  prompt("Enter the size of the grid (Up to 100): ");    
+
+    while (full_grid.firstChild) 
+    {
+        full_grid.removeChild(full_grid.firstChild);
+    }
+    create_grid(input);
+})
+
+mono.addEventListener("click", () => random_color = false);
+
+rainbow.addEventListener("click", () => random_color = true);
+
+full_grid.addEventListener("mouseover", (event) => 
+{
+    if (random_color) 
+    {
+        event.target.style["background-color"] = `rgb(${getRandomColor()} ${getRandomColor()} ${getRandomColor()})`;
+    }
+    else 
+    {
+        event.target.style["background-color"] = "red";
+    }
+})
 
 function create_grid(input) {
     if (input >= 0 && input <= 100) 
@@ -26,46 +54,14 @@ function create_grid(input) {
                 }
             
         }
-        else {
-            prompt("Please enter an valid number!");
+        else 
+        {
+            alert("Please enter an valid number!");
         }
     
 }
-create_grid(5);
-
-input_button.addEventListener("click", () => 
-{
-    let input =  prompt("Enter the size of the grid (Up to 100): ");    
-
-    while (full_grid.firstChild) 
-    {
-        full_grid.removeChild(full_grid.firstChild);
-    }
-    create_grid(input);
-})
-
-mono.addEventListener("click", () => {
-    random_color = false;
-})
-
-
-rainbow.addEventListener("click", () => {
-    random_color = true;
-})
-
-
-full_grid.addEventListener("mouseover", (event) => 
-{
-    if (event.target.className == "grid" && !random_color) 
-    {
-        event.target.style["background-color"] = "red";
-    }
-    else if (event.target.className == "grid" && random_color) {
-        event.target.style["background-color"] = `rgb(${getRandomColor()}, ${getRandomColor()}, ${getRandomColor()})`;
-    }
-})
 
 function getRandomColor() 
 {
-    return Math.floor(Math.random() * (0 - 255 + 1) + 255);
+    return Math.floor(Math.random() * 256);
 }
