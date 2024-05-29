@@ -1,6 +1,9 @@
 const body = document.querySelector("body");
 const full_grid = document.querySelector(".full_grid");
 const input_button = document.querySelector(".input");
+const rainbow = document.querySelector(".rainbow");
+const mono = document.querySelector(".mono");
+let random_color = false;
 
 input_button.addEventListener("click", () => 
 {
@@ -36,10 +39,28 @@ input_button.addEventListener("click", () =>
     }
 })
 
+mono.addEventListener("click", () => {
+    random_color = false;
+})
+
+
+rainbow.addEventListener("click", () => {
+    random_color = true;
+})
+
+
 full_grid.addEventListener("mouseover", (event) => 
 {
-    if (event.target.className == "grid") 
+    if (event.target.className == "grid" && !random_color) 
     {
-        event.target.setAttribute("class", "grid hovered");
+        event.target.style["background-color"] = "black";
+    }
+    else if (event.target.className == "grid" && random_color) {
+        event.target.style["background-color"] = `rgb(${getRandomColor()}, ${getRandomColor()}, ${getRandomColor()})`;
     }
 })
+
+function getRandomColor() 
+{
+    return Math.floor(Math.random() * (0 - 255 + 1) + 255);
+}

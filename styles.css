@@ -11,7 +11,3 @@
     overflow: hidden; 
     margin: auto;
 }
-
-.grid.hovered {
-    background-color: black;
-}
