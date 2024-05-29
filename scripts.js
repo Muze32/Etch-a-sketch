@@ -3,7 +3,10 @@ const full_grid = document.querySelector(".full_grid");
 const input_button = document.querySelector(".input");
 const rainbow = document.querySelector(".rainbow");
 const mono = document.querySelector(".mono");
+const shading = document.querySelector(".shading");
 let random_color = false;
+let is_toggled = false;
+let i = 0;
 create_grid(5);
 
 input_button.addEventListener("click", () => 
@@ -21,15 +24,28 @@ mono.addEventListener("click", () => random_color = false);
 
 rainbow.addEventListener("click", () => random_color = true);
 
+shading.addEventListener("click", () => is_toggled = !is_toggled);
+
+
 full_grid.addEventListener("mouseover", (event) => 
 {
-    if (random_color) 
+    if (random_color) event.target.style["background-color"] = `rgb(${getRandomColor()} ${getRandomColor()} ${getRandomColor()})`;
+    
+    else event.target.style["background-color"] = "black";
+
+    if (is_toggled) 
     {
-        event.target.style["background-color"] = `rgb(${getRandomColor()} ${getRandomColor()} ${getRandomColor()})`;
+        let opacity = parseFloat(event.target.style.opacity);
+        if (isNaN(opacity)) {
+            opacity = 0.1; // Initial opacity if not set
+        }
+        if (opacity < 1) 
+        {
+            event.target.style.opacity = opacity + 0.1;
+        }
     }
-    else 
-    {
-        event.target.style["background-color"] = "red";
+    else {
+        event.target.style.opacity = 1;
     }
 })
 
